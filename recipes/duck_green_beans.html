@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Duck &amp; Fig Gastrique / Garlicky Green Beans — Process Charts</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦆</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4F6F4;
+    --grid-line: #DCE3DF;
+    --ink: #1B241F;
+    --ink-dim: #5C665F;
+    --rule: #B9C4BE;
+    --copper: #A85C2E;
+    --copper-fill: #F1DFC9;
+    --herb: #45633C;
+    --herb-fill: #DCE7D3;
+    --plum: #6B3A4C;
+    --plum-fill: #EAD9DF;
+    --card: #FFFFFF;
+    --shadow: rgba(27,36,31,0.08);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --paper: #141815;
+      --grid-line: #232B26;
+      --ink: #E8ECE9;
+      --ink-dim: #97A39C;
+      --rule: #3A443E;
+      --copper: #E0A671;
+      --copper-fill: #3A2A1C;
+      --herb: #9BC08A;
+      --herb-fill: #24301F;
+      --plum: #D7A6B9;
+      --plum-fill: #362430;
+      --card: #1B211D;
+      --shadow: rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #141815;
+    --grid-line: #232B26;
+    --ink: #E8ECE9;
+    --ink-dim: #97A39C;
+    --rule: #3A443E;
+    --copper: #E0A671;
+    --copper-fill: #3A2A1C;
+    --herb: #9BC08A;
+    --herb-fill: #24301F;
+    --plum: #D7A6B9;
+    --plum-fill: #362430;
+    --card: #1B211D;
+    --shadow: rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  body {
+    margin: 0;
+    background:
+      linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0/100% 28px,
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0/28px 100%,
+      var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Mono", "SF Mono", Consolas, "Courier New", monospace;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 72px;
+  }
+
+  header.masthead {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 18px;
+    margin-bottom: 40px;
+  }
+  header.masthead .kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-dim);
+  }
+  header.masthead h1 {
+    font-family: "Spectral", Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin: 6px 0 8px;
+    line-height: 1.15;
+  }
+  header.masthead p {
+    max-width: 62ch;
+    line-height: 1.6;
+    color: var(--ink-dim);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  section.dish {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 32px clamp(16px, 4vw, 36px) 36px;
+    margin-bottom: 40px;
+    box-shadow: 0 1px 3px var(--shadow);
+  }
+
+  .dish-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+  }
+  .dish-head h2 {
+    font-family: "Spectral", Georgia, serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  .dish-head .serves {
+    font-size: 0.78rem;
+    color: var(--ink-dim);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 3px 9px;
+  }
+
+  .ingredients {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-bottom: 30px;
+  }
+  .ingredients h3 {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--ink-dim);
+  }
+  .swatch {
+    width: 10px; height: 10px; border-radius: 2px; flex: none;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+  .ingredients ul {
+    margin: 0; padding: 0; list-style: none;
+    font-size: 0.86rem; line-height: 1.75;
+  }
+  .ingredients li { border-bottom: 1px dotted var(--grid-line); padding: 2px 0; }
+
+  /* ---- process chart ---- */
+  .chart-label {
+    font-size: 0.72rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.02em;
+    margin: 0 0 10px;
+  }
+  .chart-scroll {
+    overflow-x: auto;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+  }
+  .process {
+    position: relative;
+    height: 200px;
+  }
+  .ruler {
+    position: relative;
+    height: 22px;
+    margin-left: 96px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .tick {
+    position: absolute;
+    top: 0;
+    font-size: 0.68rem;
+    color: var(--ink-dim);
+    transform: translateX(-50%);
+    padding-bottom: 4px;
+    border-right: 1px solid var(--rule);
+    height: 8px;
+    padding-right: 3px;
+  }
+  .tick.zero { border-right: none; }
+
+  .lane {
+    display: flex;
+    align-items: stretch;
+    height: 56px;
+  }
+  .lane-a { margin-top: 10px; }
+  .lane-b { margin-top: 34px; }
+  .lane-label {
+    width: 96px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-dim);
+    gap: 6px;
+  }
+  .lane-track {
+    position: relative;
+    flex: none;
+  }
+
+  .box {
+    position: absolute;
+    top: 0;
+    height: 56px;
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.68rem;
+    line-height: 1.25;
+    padding: 3px 5px;
+    font-weight: 500;
+  }
+  .box.duck   { background: var(--copper-fill); border-color: var(--copper); }
+  .box.sauce  { background: var(--herb-fill);   border-color: var(--herb); }
+  .box.plate  { background: var(--plum-fill);   border-color: var(--plum); font-style: italic; font-family:"Spectral",serif; font-size:0.85rem; }
+  .box.idle {
+    background: transparent;
+    border: 1.5px dashed var(--rule);
+    color: var(--ink-dim);
+    font-style: italic;
+  }
+
+  .overlay { position: absolute; top: 0; left: 0; pointer-events: none; }
+  .overlay line { stroke: var(--ink); stroke-width: 1.4; }
+
+  .legend {
+    display: flex; gap: 18px; flex-wrap: wrap;
+    font-size: 0.72rem; color: var(--ink-dim);
+    margin-top: 18px; padding-top: 14px; border-top: 1px dotted var(--grid-line);
+  }
+  .legend span { display:inline-flex; align-items:center; gap:6px; }
+
+  .notes {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px dotted var(--grid-line);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .notes strong { color: var(--ink); }
+
+  footer {
+    text-align: center;
+    color: var(--ink-dim);
+    font-size: 0.72rem;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 640px) {
+    section.dish { padding: 24px 16px 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <div class="kicker">PROCESS CHARTS — TWO DISHES</div>
+    <h1>Duck breast with fig gastrique, garlicky green beans</h1>
+    <p>Read left to right along the timeline. Each row is one ingredient stream; rows merge where components are combined. Dashed boxes mean the component is sitting, waiting on something upstream.</p>
+  </header>
+
+  <!-- ============ DISH 1: DUCK ============ -->
+  <section class="dish">
+    <div class="dish-head">
+      <h2>Duck Breast with Fig Gastrique</h2>
+      <span class="serves">serves 2 · ~30 min</span>
+    </div>
+
+    <div class="ingredients">
+      <div>
+        <h3><span class="swatch" style="background:var(--copper)"></span>For the duck</h3>
+        <ul>
+          <li>2 duck breasts (~200 g / 7 oz each), skin on</li>
+          <li>Kosher salt &amp; black pepper</li>
+        </ul>
+      </div>
+      <div>
+        <h3><span class="swatch" style="background:var(--herb)"></span>For the gastrique</h3>
+        <ul>
+          <li>1 small shallot, minced</li>
+          <li>6 fresh figs, quartered (or 8–10 dried, soaked 10 min)</li>
+          <li>¼ cup (60 ml) balsamic vinegar</li>
+          <li>2 tbsp honey</li>
+          <li>½ cup (120 ml) chicken or duck stock</li>
+          <li>1 sprig fresh thyme</li>
+          <li>2 tbsp port or dry red wine (optional)</li>
+          <li>1 tbsp (15 g) cold unsalted butter, cubed</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="chart-label">PROCESS — minutes elapsed</p>
+    <div class="chart-scroll">
+      <div class="process" style="width:816px;">
+        <div class="ruler" style="width:720px;">
+          <span class="tick zero" style="left:0">0</span>
+          <span class="tick" style="left:120px">5</span>
+          <span class="tick" style="left:240px">10</span>
+          <span class="tick" style="left:360px">15</span>
+          <span class="tick" style="left:480px">20</span>
+          <span class="tick" style="left:600px">25</span>
+          <span class="tick" style="left:720px">30</span>
+        </div>
+
+        <div class="lane lane-a">
+          <div class="lane-label">DUCK</div>
+          <div class="lane-track" style="width:720px;">
+            <div class="box duck" style="left:0px;width:48px;">Score &amp; season</div>
+            <div class="box duck" style="left:48px;width:240px;">Skin down, cold pan → medium<br>render 8–10 min</div>
+            <div class="box duck" style="left:288px;width:120px;">Flip, 4–6 min<br>→ 135°F</div>
+            <div class="box duck" style="left:408px;width:192px;">Rest, tented<br>5–10 min</div>
+            <div class="box duck" style="left:600px;width:48px;">Slice</div>
+          </div>
+        </div>
+
+        <div class="lane lane-b">
+          <div class="lane-label">GASTRIQUE</div>
+          <div class="lane-track" style="width:720px;">
+            <div class="box sauce" style="left:0px;width:48px;">Mince &amp; quarter</div>
+            <div class="box idle" style="left:48px;width:240px;">— waiting on rendered duck fat —</div>
+            <div class="box sauce" style="left:288px;width:48px;">Sauté shallot</div>
+            <div class="box sauce" style="left:336px;width:96px;">Deglaze, reduce<br>3–4 min</div>
+            <div class="box sauce" style="left:432px;width:168px;">+ stock, thyme, port<br>simmer 5–7 min</div>
+            <div class="box sauce" style="left:600px;width:48px;">Figs + butter</div>
+          </div>
+        </div>
+
+        <svg class="overlay" width="816" height="200">
+          <line x1="744" y1="42" x2="744" y2="59"></line>
+          <line x1="744" y1="76" x2="744" y2="59"></line>
+        </svg>
+        <div class="box plate" style="left:744px;top:31px;width:72px;">Plate</div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span><span class="swatch" style="background:var(--copper)"></span>duck</span>
+      <span><span class="swatch" style="background:var(--herb)"></span>gastrique</span>
+      <span><span class="swatch" style="background:var(--plum)"></span>plate</span>
+      <span><span class="swatch" style="background:transparent;border-style:dashed;"></span>idle / waiting</span>
+    </div>
+
+    <div class="notes">
+      <strong>Method, in prose:</strong> Score the duck skin in a crosshatch and season both sides. Lay skin-side down in a cold, dry skillet and bring the heat up to medium — starting cold renders the fat gradually so the skin turns crisp without seizing. After 8–10 minutes, once the skin is deep gold, flip and cook 4–6 minutes more to 135°F for medium-rare. Rest, tented, 5–10 minutes.
+      While the duck rests, pour off all but a tablespoon of the rendered fat. Sauté the shallot, then deglaze with balsamic and honey, scraping up the fond, and reduce until syrupy. Add stock, thyme, and port and simmer until it coats a spoon. Stir in the figs just long enough to soften, then take the pan off the heat and swirl in the cold butter for shine. Slice the duck on the bias, fan it out, and spoon the gastrique over.
+    </div>
+  </section>
+
+  <!-- ============ DISH 2: GREEN BEANS ============ -->
+  <section class="dish">
+    <div class="dish-head">
+      <h2>Garlicky Green Beans</h2>
+      <span class="serves">serves 3–4 as a side · ~10 min</span>
+    </div>
+
+    <div class="ingredients">
+      <div>
+        <h3><span class="swatch" style="background:var(--copper)"></span>Beans</h3>
+        <ul>
+          <li>1 lb (450 g) green beans, trimmed</li>
+          <li>Kosher salt, to taste</li>
+          <li>Squeeze of lemon juice (optional)</li>
+          <li>2 tbsp toasted sliced almonds or pine nuts (optional)</li>
+        </ul>
+      </div>
+      <div>
+        <h3><span class="swatch" style="background:var(--herb)"></span>Garlic oil</h3>
+        <ul>
+          <li>2 tbsp (30 ml) olive oil</li>
+          <li>3 cloves garlic, thinly sliced</li>
+          <li>¼–½ tsp red pepper flakes (optional)</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="chart-label">PROCESS — minutes elapsed</p>
+    <div class="chart-scroll">
+      <div class="process" style="width:576px;">
+        <div class="ruler" style="width:480px;">
+          <span class="tick zero" style="left:0">0</span>
+          <span class="tick" style="left:96px">2</span>
+          <span class="tick" style="left:192px">4</span>
+          <span class="tick" style="left:288px">6</span>
+          <span class="tick" style="left:384px">8</span>
+          <span class="tick" style="left:480px">10</span>
+        </div>
+
+        <div class="lane lane-a">
+          <div class="lane-label">BEANS</div>
+          <div class="lane-track" style="width:480px;">
+            <div class="box duck" style="left:0px;width:48px;">Trim</div>
+            <div class="box duck" style="left:48px;width:192px;">Blanch, 3–4 min</div>
+            <div class="box duck" style="left:240px;width:48px;">Ice bath</div>
+            <div class="box duck" style="left:288px;width:48px;">Drain, dry</div>
+          </div>
+        </div>
+
+        <div class="lane lane-b">
+          <div class="lane-label">GARLIC OIL</div>
+          <div class="lane-track" style="width:480px;">
+            <div class="box sauce" style="left:0px;width:48px;">Slice garlic</div>
+            <div class="box idle" style="left:48px;width:240px;">— waiting —</div>
+            <div class="box sauce" style="left:288px;width:48px;">Heat oil<br>+ garlic</div>
+          </div>
+        </div>
+
+        <svg class="overlay" width="576" height="200">
+          <line x1="336" y1="42" x2="336" y2="59"></line>
+          <line x1="336" y1="76" x2="336" y2="59"></line>
+        </svg>
+        <div class="box plate" style="left:336px;top:31px;width:96px;font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:0.68rem;">Toss &amp; sauté<br>2–3 min</div>
+        <div class="box plate" style="left:432px;top:31px;width:48px;">Serve</div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span><span class="swatch" style="background:var(--copper)"></span>beans</span>
+      <span><span class="swatch" style="background:var(--herb)"></span>garlic oil</span>
+      <span><span class="swatch" style="background:var(--plum)"></span>combined</span>
+      <span><span class="swatch" style="background:transparent;border-style:dashed;"></span>idle / waiting</span>
+    </div>
+
+    <div class="notes">
+      <strong>Method, in prose:</strong> Blanch the trimmed beans in generously salted, boiling water for 3–4 minutes, until bright green and just tender. Shock in ice water to stop the cooking, then drain and pat dry — dry beans sear instead of steaming later.
+      While the beans blanch, slice the garlic thin. Heat the olive oil over medium, add the garlic, and cook 30–60 seconds until fragrant but not browned (add the pepper flakes here if using). Add the beans, toss to coat, and sauté 2–3 minutes until heated through with a little char. Finish with salt, a squeeze of lemon, and the toasted nuts if using.
+    </div>
+  </section>
+
+  <div class="notes" style="max-width:900px;margin:0 auto 24px;padding:0;border:none;">
+    <strong>Plating together:</strong> the beans can sit under or beside the sliced duck, with the gastrique spooned over both — the garlic and the fig gastrique don't compete, since one is savory-sharp and the other is sweet-tannic.
+  </div>
+
+  <footer>charted like a Cooking-for-Engineers process diagram</footer>
+</div>
+</body>
+</html>
