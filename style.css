@@ -1,0 +1,25 @@
+:root {
+  --bg: #fbf8f3; --fg: #2b2622; --muted: #7a6f66; --accent: #b5542c; --rule: #e6ded3;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #1d1a17; --fg: #ece5dc; --muted: #a39789; --accent: #e08a5f; --rule: #3a342e; }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 18px/1.6 Georgia, "Iowan Old Style", serif;
+}
+main { max-width: 42rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+h1 { font-size: 2.2rem; line-height: 1.2; margin: 0 0 .5rem; }
+h2 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent);
+     border-bottom: 1px solid var(--rule); padding-bottom: .3rem; margin-top: 2rem; }
+a { color: var(--accent); }
+.meta { color: var(--muted); font-size: .95rem; }
+.meta span + span::before { content: " · "; }
+ul.ingredients li { margin: .2rem 0; }
+ol.steps li { margin: .6rem 0; }
+.back { font-size: .9rem; display: inline-block; margin-bottom: 1.5rem; }
+ul.index { list-style: none; padding: 0; }
+ul.index li { padding: .6rem 0; border-bottom: 1px solid var(--rule); }
+ul.index a { text-decoration: none; font-size: 1.2rem; }
+@media print { .back { display: none; } body { background: #fff; color: #000; } }
