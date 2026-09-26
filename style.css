@@ -1,25 +1,100 @@
+/* Recipe site — tabular "recipe card" layout.
+   Ingredients run down the left column; each operation is a cell that spans
+   (rowspan) the ingredients it combines. Read left to right. */
+
 :root {
-  --bg: #fbf8f3; --fg: #2b2622; --muted: #7a6f66; --accent: #b5542c; --rule: #e6ded3;
+  --bg: #fdfbe8;
+  --fg: #1f2a1c;
+  --muted: #5d6a57;
+  --line: #3f9a36;
+  --card: #ffffff;
+  --card-alt: #f4f9ef;
+  --accent: #2f7a28;
 }
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #1d1a17; --fg: #ece5dc; --muted: #a39789; --accent: #e08a5f; --rule: #3a342e; }
+  :root:not([data-theme="light"]) {
+    --bg: #161a14;
+    --fg: #e6ece2;
+    --muted: #9eab97;
+    --line: #5fb454;
+    --card: #1e241b;
+    --card-alt: #232b20;
+    --accent: #8fd382;
+  }
 }
+:root[data-theme="dark"] {
+  --bg: #161a14;
+  --fg: #e6ece2;
+  --muted: #9eab97;
+  --line: #5fb454;
+  --card: #1e241b;
+  --card-alt: #232b20;
+  --accent: #8fd382;
+}
+
 * { box-sizing: border-box; }
 body {
-  margin: 0; background: var(--bg); color: var(--fg);
-  font: 18px/1.6 Georgia, "Iowan Old Style", serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 17px/1.5 Verdana, "DejaVu Sans", "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
-main { max-width: 42rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
-h1 { font-size: 2.2rem; line-height: 1.2; margin: 0 0 .5rem; }
-h2 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent);
-     border-bottom: 1px solid var(--rule); padding-bottom: .3rem; margin-top: 2rem; }
+main { max-width: 64rem; margin: 0 auto; padding: 2rem 16px 4rem; }
 a { color: var(--accent); }
-.meta { color: var(--muted); font-size: .95rem; }
+.back { font-size: .85rem; display: inline-block; margin-bottom: 1.25rem; }
+
+h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 .4rem; }
+h2 { font-size: 1.4rem; line-height: 1.25; margin: 2.75rem 0 .3rem; }
+h3 {
+  font-size: .8rem; text-transform: uppercase; letter-spacing: .08em;
+  color: var(--muted); margin: 1.75rem 0 .5rem;
+}
+.intro { color: var(--muted); max-width: 42rem; }
+.meta { color: var(--muted); font-size: .9rem; margin: 0 0 1rem; }
 .meta span + span::before { content: " · "; }
-ul.ingredients li { margin: .2rem 0; }
-ol.steps li { margin: .6rem 0; }
-.back { font-size: .9rem; display: inline-block; margin-bottom: 1.5rem; }
+
+/* ---- the recipe card ---- */
+.card { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 0 .5rem; }
+table.recipe {
+  border-collapse: collapse;
+  border: 3px solid var(--line);
+  background: var(--card);
+  font-size: .85rem;
+  line-height: 1.3;
+  min-width: 100%;
+}
+table.recipe td {
+  border: 2px solid var(--line);
+  padding: .4em .45em;
+  vertical-align: middle;
+  text-align: center;
+}
+/* ingredient cells: left column */
+table.recipe td.ing { text-align: left; min-width: 12em; max-width: 18em; }
+/* operation cells */
+table.recipe td.op { min-width: 4.5em; max-width: 10em; hyphens: auto; }
+/* full-width setup rows ("Preheat oven…") */
+table.recipe td.setup { background: var(--card-alt); }
+/* the final operation that brings everything together */
+table.recipe td.final { background: var(--card-alt); font-weight: bold; }
+.card-note { font-size: .8rem; color: var(--muted); margin: 0 0 1rem; }
+
+/* ---- method & notes ---- */
+ol.steps { padding-left: 1.6rem; margin: 0; }
+ol.steps li { margin: .55rem 0; padding-left: .25rem; }
+ol.steps li::marker { color: var(--accent); font-weight: bold; }
+.notes { font-size: .92rem; }
+.notes p { margin: .5rem 0; }
+
+/* ---- index page ---- */
 ul.index { list-style: none; padding: 0; }
-ul.index li { padding: .6rem 0; border-bottom: 1px solid var(--rule); }
-ul.index a { text-decoration: none; font-size: 1.2rem; }
-@media print { .back { display: none; } body { background: #fff; color: #000; } }
+ul.index li { padding: .6rem 0; border-bottom: 1px solid var(--line); }
+ul.index a { text-decoration: none; font-size: 1.15rem; }
+
+@media print {
+  .back { display: none; }
+  body { background: #fff; color: #000; font-size: 12pt; }
+  table.recipe { page-break-inside: avoid; }
+  .card { overflow: visible; }
+}

@@ -10,23 +10,55 @@
 <main>
   <a class="back" href="../">&larr; All recipes</a>
   <h1>Recipe Name</h1>
-  <p class="meta"><span>Serves 4</span><span>Prep 15 min</span><span>Cook 30 min</span></p>
-  <p>A short description of the dish.</p>
+  <p class="meta"><span>Serves 4</span><span>About 45 min</span></p>
+  <p class="intro">A short description of the dish.</p>
 
-  <h2>Ingredients</h2>
-  <ul class="ingredients">
-    <li>1 cup something</li>
-    <li>2 tbsp something else</li>
-  </ul>
+  <!--
+    Recipe card: one row per ingredient, in the order it's used.
+    Each step to the right uses rowspan to cover the ingredients it combines.
+    Leave an empty <td> (with colspan/rowspan) where an ingredient waits.
+    Full-width setup rows ("Preheat oven…") use class="setup" and colspan = total columns.
+    Every row must add up to the same number of columns.
+  -->
+  <div class="card">
+    <table class="recipe">
+      <tr>
+        <td class="setup" colspan="5">Butter and flour an 8x8-in pan</td>
+      </tr>
+      <tr>
+        <td class="setup" colspan="5">Preheat oven to 350&deg;F (175&deg;C)</td>
+      </tr>
+      <tr>
+        <td class="ing">4 oz (115 g) unsalted butter</td>
+        <td class="op">melt</td>
+        <td class="op" rowspan="2">mix</td>
+        <td class="op" rowspan="4">fold in</td>
+        <td class="op final" rowspan="4">bake 30&ndash;40 min</td>
+      </tr>
+      <tr>
+        <td class="ing">1 cup (200 g) sugar</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="ing">&frac12; cup (65 g) all-purpose flour</td>
+        <td rowspan="2" colspan="2"></td>
+      </tr>
+      <tr>
+        <td class="ing">&frac14; tsp (1.5 g) salt</td>
+      </tr>
+    </table>
+  </div>
 
-  <h2>Steps</h2>
+  <h3>Method</h3>
   <ol class="steps">
     <li>Do the first thing.</li>
     <li>Do the next thing.</li>
   </ol>
 
-  <h2>Notes</h2>
-  <p>Optional tips, variations, source.</p>
+  <h3>Notes</h3>
+  <div class="notes">
+    <p>Optional tips, variations, source.</p>
+  </div>
 </main>
 </body>
 </html>
